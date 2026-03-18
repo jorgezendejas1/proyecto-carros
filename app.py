@@ -8,22 +8,16 @@ car_data = pd.read_csv('vehicles_us.csv')
 # Título de la app
 st.header('Cuadro de Mando de Anuncios de Coches')
 
-# Botón para el Histograma
-hist_button = st.button('Construir histograma')
+# Crear casillas de verificación
+build_histogram = st.checkbox('Construir un histograma')
+build_scatter = st.checkbox('Construir un gráfico de dispersión')
 
-if hist_button: # al hacer clic en el botón
-    st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
-    # crear un histograma
+if build_histogram: # si la casilla está seleccionada
+    st.write('Mostrando histograma del millaje de los coches')
     fig = px.histogram(car_data, x="odometer")
-    # mostrar un gráfico Plotly interactivo
     st.plotly_chart(fig, use_container_width=True)
 
-# Botón para el Gráfico de Dispersión
-scatter_button = st.button('Construir gráfico de dispersión')
-
-if scatter_button:
-    st.write('Creación de un gráfico de dispersión para el conjunto de datos')
-    # crear un gráfico de dispersión
+if build_scatter: # si la otra casilla está seleccionada
+    st.write('Mostrando gráfico de dispersión: Precio vs Millaje')
     fig = px.scatter(car_data, x="odometer", y="price")
-    # mostrar un gráfico Plotly interactivo
     st.plotly_chart(fig, use_container_width=True)
